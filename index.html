@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LOFT Café | Bites n' More</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f3eb;
+    color: #30251f;
+}
+
+header {
+    background: #241b17;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.logo span {
+    display: block;
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 6px;
+    margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #d7ad78;
+}
+
+.hero {
+    min-height: 440px;
+    padding: 80px 8%;
+    display: flex;
+    align-items: center;
+    background:
+      linear-gradient(90deg,
+      rgba(28,20,15,.88),
+      rgba(28,20,15,.3)),
+      url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85")
+      center/cover;
+    color: white;
+}
+
+.hero-content {
+    max-width: 550px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 68px);
+    margin-bottom: 18px;
+}
+
+.hero p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.button {
+    display: inline-block;
+    padding: 13px 24px;
+    background: #b9824d;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.button:hover {
+    background: #966238;
+}
+
+.section {
+    padding: 65px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #806d5c;
+    line-height: 1.6;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.category-btn {
+    padding: 10px 17px;
+    background: white;
+    border: 1px solid #c8b39b;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background: #30251f;
+    color: white;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.food-card {
+    background: white;
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,.07);
+    transition: transform .2s;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+}
+
+.food-card img {
+    width: 100%;
+    height: 205px;
+    object-fit: cover;
+    display: block;
+}
+
+.food-info {
+    padding: 18px;
+}
+
+.food-info h3 {
+    font-size: 19px;
+    margin-bottom: 9px;
+}
+
+.food-info p {
+    color: #76685c;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 45px;
+}
+
+.food-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.price {
+    color: #95643b;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.small-btn {
+    background: #30251f;
+    color: white;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.about {
+    background: #eae0d2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.about img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.about h2 {
+    font-size: 34px;
+    margin-bottom: 18px;
+}
+
+.about p {
+    line-height: 1.9;
+    color: #5e5045;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.contact {
+    background: #30251f;
+    color: white;
+    text-align: center;
+}
+
+.contact p {
+    line-height: 2;
+    margin: 12px 0 22px;
+}
+
+footer {
+    background: #19120f;
+    color: #ddd0c2;
+    text-align: center;
+    padding: 22px;
+    font-size: 13px;
+}
+
+@media (max-width: 800px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 400px;
+        padding: 55px 7%;
+    }
+
+    .section {
+        padding: 45px 5%;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery-grid img {
+        height: 150px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    nav {
+        gap: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        LOFT
+        <span>CAFÉ & KITCHEN</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Bites n' More</h1>
+
+        <p>
+            Good food, great coffee and beautiful moments.
+            Discover your favourite flavours at LOFT Café.
+        </p>
+
+        <a href="#menu" class="button">Explore Our Menu</a>
+    </div>
+</section>
+
+<section class="section" id="menu">
+    <div class="section-title">
+        <h2>Our Menu</h2>
+        <p>Fresh flavours. Delicious food. Memorable moments.</p>
+    </div>
+
+    <div class="categories">
+        <button class="category-btn active" data-category="All">All</button>
+        <button class="category-btn" data-category="Starters">Starters</button>
+        <button class="category-btn" data-category="Pizza">Pizza</button>
+        <button class="category-btn" data-category="Pasta">Pasta</button>
+        <button class="category-btn" data-category="Indian">Indian</button>
+        <button class="category-btn" data-category="Drinks">Drinks</button>
+        <button class="category-btn" data-category="Desserts">Desserts</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<section class="section about" id="about">
+    <div>
+        <h2>Welcome to LOFT Café</h2>
+
+        <p>
+            A place where delicious food meets a relaxing atmosphere.
+            From crispy starters and cheesy pizzas to refreshing drinks
+            and comforting Indian favourites, there is something for
+            every mood.
+        </p>
+
+        <p>
+            Visit us with your friends and family and make every
+            meal a special experience.
+        </p>
+
+        <a href="#contact" class="button">Visit Our Café</a>
+    </div>
+
+    <img
+      src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85"
+      alt="Cafe interior">
+</section>
+
+<section class="section" id="gallery">
+    <div class="section-title">
+        <h2>Our Gallery</h2>
+        <p>A glimpse of the café experience.</p>
+    </div>
+
+    <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Cafe interior">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80" alt="Pizza">
+        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=80" alt="Pasta">
+        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80" alt="Cold drink">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80" alt="Fresh food">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80" alt="Coffee">
+    </div>
+</section>
+
+<section class="section contact" id="contact">
+    <div class="section-title">
+        <h2>Visit LOFT Café</h2>
+        <p style="color:#e0d1c2">
+            We'd love to serve you!
+        </p>
+    </div>
+
+    <p>
+        <strong>Opening Hours:</strong><br>
+        Please confirm the café's actual timings.
+        <br><br>
+        <strong>Address:</strong><br>
+        Add the café's complete address here.
+        <br><br>
+        <strong>Phone:</strong><br>
+        Add the café's official phone number here.
+    </p>
+
+    <a class="button" id="mapButton" href="#" target="_blank">
+        Find Us on Google Maps
+    </a>
+</section>
+
+<footer>
+    © <span id="year"></span> LOFT Café.
+    All rights reserved.
+</footer>
+
+<script>
+const foods = [
+    {
+        name: "Crispy Corn",
+        category: "Starters",
+        price: 279,
+        description: "Crispy golden corn with delicious spices.",
+        image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Chilli Paneer",
+        category: "Starters",
+        price: 339,
+        description: "Spicy paneer tossed in a flavourful sauce.",
+        image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Margherita Pizza",
+        category: "Pizza",
+        price: 399,
+        description: "Classic pizza with cheese and tomato.",
+        image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Paneer Tikka Pizza",
+        category: "Pizza",
+        price: 449,
+        description: "Paneer, capsicum and delicious melted cheese.",
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Creamy Penne Alfredo",
+        category: "Pasta",
+        price: 379,
+        description: "Creamy pasta with a rich, smooth sauce.",
+        image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Dal Makhani",
+        category: "Indian",
+        price: 279,
+        description: "A rich and comforting Indian lentil dish.",
+        image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Paneer Tikka",
+        category: "Indian",
+        price: 349,
+        description: "Smoky, spiced paneer cooked tandoori style.",
+        image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Cold Coffee",
+        category: "Drinks",
+        price: 139,
+        description: "A refreshing coffee for your favourite moments.",
+        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Chocolate Shake",
+        category: "Drinks",
+        price: 189,
+        description: "A smooth and chocolatey cold drink.",
+        image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Chocolate Dessert",
+        category: "Desserts",
+        price: 199,
+        description: "A sweet treat for chocolate lovers.",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+    }
+];
+
+const menuGrid = document.getElementById("menuGrid");
+
+function renderMenu(category = "All") {
+    menuGrid.innerHTML = "";
+
+    const filteredFoods = category === "All"
+        ? foods
+        : foods.filter(food => food.category === category);
+
+    filteredFoods.forEach(food => {
+        const card = document.createElement("article");
+        card.className = "food-card";
+
+        const img = document.createElement("img");
+        img.src = food.image;
+        img.alt = food.name;
+        img.loading = "lazy";
+
+        const info = document.createElement("div");
+        info.className = "food-info";
+
+        const title = document.createElement("h3");
+        title.textContent = food.name;
+
+        const description = document.createElement("p");
+        description.textContent = food.description;
+
+        const bottom = document.createElement("div");
+        bottom.className = "food-bottom";
+
+        const price = document.createElement("span");
+        price.className = "price";
+        price.textContent = "₹" + food.price;
+
+        const button = document.createElement("button");
+        button.className = "small-btn";
+        button.textContent = "Enquire";
+        button.addEventListener("click", () => {
+            const message = `Hello, I would like to enquire about ${food.name}.`;
+            const whatsappNumber = ""; // Add official number with country code.
+            
+            if (!whatsappNumber) {
+                alert(message + "\nPlease add the café's WhatsApp number to enable enquiries.");
+                return;
+            }
+
+            const url = "https://wa.me/" + whatsappNumber +
+                "?text=" + encodeURIComponent(message);
+
+            window.open(url, "_blank");
+        });
+
+        bottom.append(price, button);
+        info.append(title, description, bottom);
+        card.append(img, info);
+        menuGrid.appendChild(card);
+    });
+}
+
+document.querySelectorAll(".category-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".category-btn")
+            .forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+        renderMenu(button.dataset.category);
+    });
+});
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+document.getElementById("mapButton").href =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent("LOFT Cafe");
+
+renderMenu();
+</script>
+
+</body>
+</html>
